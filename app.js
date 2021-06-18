@@ -1,32 +1,30 @@
-// const Logger=require('./logger');
-// const logger=new Logger();
+const {createReadStream}=require('fs')
 
-// // Register a listener
-// logger.on('messageLogged',(arg) => {
-//     console.log('Listener called',arg);
-// })
+const stream = createReadStream('./content/first.txt' , {
+    highWaterMark:90000,
+    encoding:'utf-8'})
 
-// logger.log("message");
+stream.on('data',(result)=>{
+    console.log(result)
+})
+
+stream.on('error', (err)=>{
+    console.log(err)
+})
+
+//default 64 kb
+//last buffer -remainder
+//highWaterMark - control size
+
+
+
+
+
+
+
 
 
 //https://www.youtube.com/watch?v=Oe421EPjeBE
 
-//Time stopped:1:1:34:29 (http intro)
-
-//local dependency -npm i <packageName>
-
-//global dependency -use it in any project
-//npm install -g <packageName>
-//sudo npm install -g <packageName> (mac)
-
-//package.json - manifest file (store important info about project/package)
-//manual approach (create package.json in the root , create properties.etc)
-//npm init ( step by step,press enter to skip)
-//npm init -y (everything default)
-
-const _= require('lodash')
-
-const items=[1,[2, [3, [4]]]]
-const newItems= _.flattenDeep(items);
-console.log(newItems)
+//Time stopped:1:3:00:50 (Async pattern -refactor to async)
 
